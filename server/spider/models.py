@@ -3,24 +3,58 @@
 @author: ioiogoo
 @date: 2017/1/3 15:11
 '''
-import sqlite3
+from peewee import *
+import os
 
-class Sql(object):
-    def __init__(self):
-        self.conn = sqlite3.connect('news.db')
-        self.cur = self.conn.cursor()
+path = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(path, 'news.db')
+db = SqliteDatabase(db_path)
 
-    def execute(self, sql=None, values=None):
-        try:
-            if values:
-                self.cur.execute(sql, values)
-            else:
-                self.cur.execute(sql)
-        except Exception as e:
-            return 1, e
-        if 'select' in sql:
-            results = self.cur.fetchall()
-        else:
-            results = 'success'
-        self.conn.commit()
-        return 0, results
+
+class Hacker_news(Model):
+    title = CharField(unique=True)
+    url = CharField(unique=True)
+    time = CharField(null=True)
+    intro = CharField(null=True)
+
+    class Meta:
+        database = db
+
+class Freebuf_news(Model):
+    title = CharField(unique=True)
+    url = CharField(unique=True)
+    time = CharField(null=False)
+    intro = CharField(null=False)
+
+    class Meta:
+        database = db
+
+class Jobbole_news(Model):
+    title = CharField(unique=True)
+    url = CharField(unique=True)
+    time = CharField(null=False)
+    intro = CharField(null=False)
+
+    class Meta:
+        database = db
+
+class Bobao_news(Model):
+    title = CharField(unique=True)
+    url = CharField(unique=True)
+    time = CharField(null=False)
+    intro = CharField(null=False)
+
+    class Meta:
+        database = db
+
+
+def create_table(model):
+    if not model.table_exists():
+        model.create_table()
+
+models = [Hacker_news, Freebuf_news, Jobbole_news, Bobao_news]
+if __name__ == '__main__':
+    db.connect()
+    for model in models:
+        create_table(model)
+

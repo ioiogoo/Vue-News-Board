@@ -4,23 +4,34 @@
 @date: 2017/1/3 14:36
 '''
 from bs4 import BeautifulSoup
-import lxml
+
 import requests
-from models import sql
 
-from spider import Base
+from base import Base
+from server.spider.models import Hacker_news
+from peewee import IntegrityError
 
-class Hacker_news(Base):
+
+class Hacker_new(Base):
     def __init__(self):
-        super(Hacker_news, self).__init__()
+        super(Hacker_new, self).__init__()
         self.name = 'Hacker_news'
         self.url = 'https://news.ycombinator.com/newest'
 
-    def parse_and_save(self):
-        pass
+    def handle(self):
+        status, results = self.parse()
+        if not status:
+            for new in results:
+                try:
+                    Hacker_news(title=new['title'], url=new['url']).save()
+                except IntegrityError:
+                    pass
+        else:
+            print results
 
     def parse(self):
         try:
+            print '%s is parse......' % self.name
             html = requests.get(self.url, headers=self.headers).content
             soup = BeautifulSoup(html, 'lxml')
             news = []
@@ -33,5 +44,5 @@ class Hacker_news(Base):
 
 
 if __name__ == '__main__':
-    h = Hacker_news()
-    h.parse()
+    h = Hacker_new()
+    h.handle()
