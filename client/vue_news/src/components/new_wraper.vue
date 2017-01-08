@@ -79,7 +79,6 @@ div #t {
 #item-box {
 	background-color: #fff;
 	margin-bottom: 10px;
-	border-radius: 10px;
 	box-shadow:1px 1px 1px rgba(0,0,0,.3)
 }
 

@@ -35,11 +35,17 @@ export default {
   #label {
     font-size: 3vw
   }
+  #item-box {
+    border-radius: 15px
+  }
 }
 
 @media screen and (min-width: 992px) {
   html, body {
     background-color: #7D7DA5;
+  }
+  #item-box {
+    border-radius: 10px
   }
 }
 
