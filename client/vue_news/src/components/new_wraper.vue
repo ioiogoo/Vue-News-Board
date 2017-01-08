@@ -2,16 +2,16 @@
 <div id="t-box" class="col-md-3 col-xs-12">
 <div id="t" >
 
-	<div id="select">
-		<span id="label">{{label}}:</span>
-		<select class="form-control" v-model='c_cat'>
+	<div id="select" class="input-group col-md-10 col-md-offset-1 col-xs-5 col-xs-offset-6">
+		<span id="label" class="input-group-addon">{{label}}:</span>
+		<select class='form-control' v-model='c_cat'>
 		  <option v-for='c in cats'>{{c}}</option>
 		</select>
 	</div>
 	<div id='wraper'>
 
 			<ul>
-				<div id="item-box" v-for='n in news'>
+				<div id="item-box" v-for='n in news' class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
 					<div id="item-name"><a :href="n.url" target="__blank">{{n.title}}</a></div>
 					<div id="item-intro" v-if='n.intro'>{{n.intro}}</div>
 					<div id="item-time" v-if='n.time'>{{n.time}}</div>
@@ -77,9 +77,8 @@ div #t {
 }
 
 #item-box {
-	width: 90%;
 	background-color: #fff;
-	margin: 0 auto 10px;
+	margin-bottom: 10px;
 	border-radius: 10px;
 	box-shadow:1px 1px 1px rgba(0,0,0,.3)
 }
@@ -112,18 +111,7 @@ a:hover {
 }
 
 #select {
-	margin: 0 5% 0 60%;
-	padding-top: 2%
+	padding-top: 10px;
 }
 
-.form-control {
-	height: 100%;
-}
-
-#label {
-	margin-left: -100%;
-	float: left;
-	padding: 6px 0
-
-}
 </style>

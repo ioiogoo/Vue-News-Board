@@ -23,18 +23,32 @@ export default {
 
 <style>
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
+  html, body {
+    background-color: #e2e4e6;
+    font-size: 3vw
+  }
   .form-control {
-    font-size: 20px
+    height: 100%;
+    font-size: 4vw
+  }
+  #label {
+    font-size: 3vw
   }
 }
+
+@media screen and (min-width: 992px) {
+  html, body {
+    background-color: #7D7DA5;
+  }
+}
+
 
 html, body {
     height: 100%;
     overflow-y: hidden;
     color: #000;
     font-family: 微软雅黑细体;
-    background-color: #7D7DA5;
 }
 
 #app {
