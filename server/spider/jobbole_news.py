@@ -6,7 +6,7 @@
 from bs4 import BeautifulSoup
 import requests
 from base import Base
-from server.spider.models import Jobbole_news
+from models import Jobbole_news
 from peewee import IntegrityError
 
 
@@ -35,7 +35,7 @@ class Jobbole_new(Base):
     def handle(self):
         status, news = self.parse()
         if not status:
-            for new in news:
+            for new in news[::-1]:
                 try:
                     Jobbole_news(title=new['title'],
                              url=new['url'],
@@ -43,6 +43,7 @@ class Jobbole_new(Base):
                              intro=new['intro']).save()
                 except IntegrityError:
                     pass
+	    print '%s is done...' % self.name
         else:
             print news
 

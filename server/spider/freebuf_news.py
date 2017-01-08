@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import requests
 
 from base import Base
-from server.spider.models import Freebuf_news
+from models import Freebuf_news
 from peewee import IntegrityError
 
 
@@ -21,10 +21,10 @@ class Freebuf_new(Base):
     def parse(self):
         try:
             print '%s is parse......' % self.name
-            for page in range(1, 4):
+            news = []
+            for page in range(1, 3):
                 html = requests.get(url=self.url % page, headers=self.headers).content
                 soup = BeautifulSoup(html, 'lxml')
-                news = []
                 for new in soup.find_all(class_="news-info"):
                     title = new.find('dt').a['title'].strip()
                     url = new.find('dt').a['href']
@@ -39,7 +39,7 @@ class Freebuf_new(Base):
     def handle(self):
         status, news = self.parse()
         if not status:
-            for new in news:
+            for new in news[::-1]:
                 try:
                     Freebuf_news(title=new['title'],
                              url=new['url'],
@@ -47,6 +47,8 @@ class Freebuf_new(Base):
                              intro=new['intro']).save()
                 except IntegrityError:
                     pass
+	    print '%s is done...' % self.name
+
         else:
             print news
 

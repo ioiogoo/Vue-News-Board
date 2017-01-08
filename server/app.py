@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_restful import Api
 from api import getNews
 
@@ -7,9 +7,9 @@ api = Api(app)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template('index.html')
 
 api.add_resource(getNews, '/api/getNews')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
