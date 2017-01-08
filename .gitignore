@@ -1,4 +1,6 @@
 config.py
+news.db
+gunicorn*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
