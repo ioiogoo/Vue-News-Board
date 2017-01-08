@@ -1,6 +1,8 @@
+#! /bin/bash
 from flask import Flask, render_template
 from flask_restful import Api
 from api import getNews
+from config import *
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,4 +14,4 @@ def hello_world():
 api.add_resource(getNews, '/api/getNews')
 
 if __name__ == '__main__':
-    app.run(debug=False,host='127.0.0.1',port=5002)
+    app.run(debug=DEBUG,host=HOST,port=PORT)
