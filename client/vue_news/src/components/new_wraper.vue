@@ -72,7 +72,7 @@ div #t-box {
 div #t {
 	height: 95%;
 	background-color: #e2e4e6;
-	margin-top: 40px;
+	/*margin-top: 40px;*/
 	border-radius: 5px;
 }
 
@@ -111,6 +111,8 @@ a:hover {
 
 #select {
 	padding-top: 10px;
+	padding-bottom: 5px
 }
+
 
 </style>

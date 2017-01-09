@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="row">
+    <div id="github" class="col-md-1 col-md-offset-11 col-xs-2 col-xs-offset-10">
+      <a href="https://github.com/ioiogoo/Vue-News-Board" target="__blank"><img src="./assets/github.png"></a>
+    </div>
     <news_wraper v-for='cat in cats' :cat='cat'></news_wraper>
   </div>
 </template>
@@ -38,6 +41,9 @@ export default {
   #item-box {
     border-radius: 15px
   }
+  #github {
+    height: 5vw;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -46,6 +52,9 @@ export default {
   }
   #item-box {
     border-radius: 10px
+  }
+  #github {
+    height: 3vw;
   }
 }
 
@@ -60,5 +69,15 @@ html, body {
 #app {
   height: 100%
 }
+
+#github img {
+  height: 100%;
+}
+
+#github {
+  margin-top: 20px;
+}
+
+
 </style>
 
