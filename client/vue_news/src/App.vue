@@ -44,6 +44,13 @@ export default {
   #github {
     height: 5vw;
   }
+  div #wraper {
+  height: 95%;
+  }
+  div #t {
+    height: 95%;
+  }
+
 }
 
 @media screen and (min-width: 992px) {
@@ -51,10 +58,16 @@ export default {
     background-color: #7D7DA5;
   }
   #item-box {
-    border-radius: 10px
+    border-radius: 5px
   }
   #github {
     height: 3vw;
+  }
+  div #wraper {
+  height: 90%;
+  }
+  div #t {
+    height: 90%;
   }
 }
 

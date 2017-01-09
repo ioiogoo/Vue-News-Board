@@ -60,7 +60,6 @@
 
 <style>
 div #wraper {
-	height: 90%;
 	overflow-y: auto;
 }
 
@@ -70,9 +69,7 @@ div #t-box {
 }
 
 div #t {
-	height: 90%;
 	background-color: #e2e4e6;
-	/*margin-top: 40px;*/
 	border-radius: 5px;
 }
 
