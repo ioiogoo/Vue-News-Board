@@ -69,7 +69,7 @@ class updateNews(Resource):
                 crawl()
                 logger.info('updateNews is done')
             else:
-                logger.info('updateNews is done, but not crawl')
+                logger.info('updateNews is done, but not crawl, lasttime is %s' % time.ctime(lasttime))
             return {'status': 0, 'data': None}
         except Exception as e:
             logger.error('updateNews is wrong,error: %s' % e)
