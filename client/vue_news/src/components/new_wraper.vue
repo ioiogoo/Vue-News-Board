@@ -3,10 +3,18 @@
 <div id="t" >
 
 	<div id="select" class="input-group col-md-10 col-md-offset-1 col-xs-5 col-xs-offset-6">
-		<span id="label" class="input-group-addon">{{label}}:</span>
+		<span id="label" class="input-group-addon">
+			<a href='#' id='update' @click='updateNews'>
+				<img src="../assets/loading.gif" v-show='updating'>
+				<img src="../assets/pic.png" title="update" v-show='!updating'>
+			</a>
+			{{label}}:
+		</span>
 		<select class='form-control' v-model='c_cat'>
 		  <option v-for='c in cats'>{{c}}</option>
 		</select>
+
+
 	</div>
 	<div id='wraper'>
 
@@ -32,7 +40,8 @@
 					'jobbole': '伯乐在线',
 					'freebuf': 'Freebuf',
 					'bobao': '安全客'
-				}
+				},
+				updating: false
 			}
 		},
 		props: ['cat'],
@@ -53,6 +62,20 @@
 		watch: {
 			c_cat(){
 				this.$store.dispatch('getNews',{'cat': this.c_cat})
+			}
+		},
+		methods:{
+			updateNews(){
+				this.$http({
+					// url: 'http://127.0.0.1:5000/api/updateNews',
+					url: '/api/updateNews',
+					method: 'POST',
+					before: ()=>{this.updating = true},
+				}).then(res=>{
+					this.updating=false
+					this.$store.dispatch('getNews',{'cat': this.c_cat})
+					return
+				})
 			}
 		}
 	}
@@ -110,6 +133,5 @@ a:hover {
 	padding-top: 10px;
 	padding-bottom: 5px
 }
-
 
 </style>

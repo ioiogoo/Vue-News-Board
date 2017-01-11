@@ -50,6 +50,10 @@ export default {
   div #t {
     height: 95%;
   }
+  #update img {
+    height: 3vw;
+    align-items: center
+  }
 
 }
 
@@ -68,6 +72,10 @@ export default {
   }
   div #t {
     height: 90%;
+  }
+  #update img {
+    height: 18px;
+    align-items: center
   }
 }
 

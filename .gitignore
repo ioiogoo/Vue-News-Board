@@ -1,3 +1,4 @@
+logs/
 config.py
 news.db
 gunicorn*

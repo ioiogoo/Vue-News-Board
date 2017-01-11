@@ -14,8 +14,11 @@ from models import create_table, models
 for model in models:
     create_table(model)
 
+def crawl():
+    news = [Bobao_new, Freebuf_new, Hacker_new, Jobbole_new]
+    p = Pool()
+    p.map(lambda x: x().handle(), news)
 
-news = [Bobao_new, Freebuf_new, Hacker_new, Jobbole_new]
-p = Pool()
-p.map(lambda x: x().handle(), news)
+if __name__ == '__main__':
+    crawl()
 
