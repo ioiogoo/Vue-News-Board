@@ -64,12 +64,12 @@ class updateNews(Resource):
     def post(self):
         try:
             lasttime = getattr(current_app, 'lasttime', None)
-            if lasttime and lasttime - time.time() > 600 or not lasttime:
+            if lasttime and time.time() - lasttime > 600 or not lasttime:
                 current_app.lasttime = time.time()
                 crawl()
                 logger.info('updateNews is done')
             else:
-                logger.info('updateNews is done, but not crawl')
+                logger.info('updateNews is done, but not crawl, lasttime is %s' % time.ctime(lasttime))
             return {'status': 0, 'data': None}
         except Exception as e:
             logger.error('updateNews is wrong,error: %s' % e)
