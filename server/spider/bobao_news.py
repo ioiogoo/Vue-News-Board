@@ -3,7 +3,6 @@
 @author: ioiogoo
 @date: 17-1-7 下午2:06
 '''
-from bs4 import BeautifulSoup
 import requests
 from base import Base
 from models import Bobao_news
@@ -15,17 +14,17 @@ class Bobao_new(Base):
     def __init__(self):
         super(Bobao_new, self).__init__()
         self.name = 'Bobao_news'
-        self.url = 'http://bobao.360.cn/index/more'
+        self.url = 'https://api.anquanke.com/data/v1/posts'
 
     def parse(self):
         try:
             print '%s is parse......' % self.name
             news = []
             for page in range(1,3):
-                html = requests.post(url=self.url, headers=self.headers, data={'page': page, 'number': 15}).content
+                html = requests.get(url=self.url, headers=self.headers, data={'page': page, 'size': 10, 'sticky': "true"}).content
                 html = json.loads(html)
                 for data in html['data']:
-                    news.append(dict(title=data['title'], url=data['url'], time=data['pub_time'], intro=data['intro']))
+                    news.append(dict(title=data['title'], url=data['url'], time=data['date'], intro=data['desc']))
             return 0, news
         except Exception as e:
             return 1, e
